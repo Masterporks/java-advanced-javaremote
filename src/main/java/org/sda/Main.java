@@ -6,6 +6,9 @@ import org.sda.services.implementations.PersonServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
+
+
+
         // INTERFACE
         Person person = new Person();
         person.setFirstName("Joosep");
@@ -19,5 +22,24 @@ public class Main {
 // Implementation method calls
         System.out.println("Person's birth year: " + personService.getPersonBirthYear(person.getAge()));
         System.out.println("Person's full name : " + personService.getPersonFullName(person));
+
+
+        //EXCEPTION
+        // Exception handling
+        try {
+            int[] intArray = {1, 4, 56, 8};
+
+            for(int i = 0; i <= intArray.length; i++){
+                System.out.println(intArray[i]);
+            }
+        } catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("The number cannot be printed because its unavailable in the array");
+        } catch (Exception exception){
+            System.out.println("Exception being caught");
+        }finally{ //This block will be executed irrespective of catch blocks
+            int a = 15;
+            System.out.println("Finally executed " + a);
+        }
+
     }
 }
