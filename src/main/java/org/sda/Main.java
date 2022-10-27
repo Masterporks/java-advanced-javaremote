@@ -2,6 +2,8 @@ package org.sda;
 
 import org.sda.model.*;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args){
         //ENCAPSULATION
@@ -31,7 +33,7 @@ public class Main {
         System.out.println(dog.getWeight());
 
         //INHERITANCE
-        Passenger passenger = new Passenger(3775844556794L,"card","Parnu","Tartu");
+        Passenger passenger = new Passenger(3775844556794L,"card",PaymentType.CARD,"Tartu");
         passenger.setEmail("edfg@gmail.com"); //Access Person fields using Passenger object
 
         PrivatePassenger privatePassenger = new PrivatePassenger(3775844556794L,"Tallinn","card","Parnu", true,"Tartu");
@@ -51,7 +53,7 @@ public class Main {
 
     // Polymorphism
         Person person3 = new Person(2653572828L, "parnu");
-        Person person4 = new Passenger(43747483L,"tartu","CARD", "Viljandi");
+        Person person4 = new Passenger(43747483L,"tartu",PaymentType.CASH, "Viljandi");
 
         System.out.println(person3.toString());
         System.out.println(person4.toString());
@@ -63,6 +65,61 @@ public class Main {
         passenger1.setDestinationAddress("Tartu");// Passenger address
         System.out.println(passenger1.getAddresses());
 
+
+        // calling parent's hidden field
+        passenger1.getHiddenAlive();
+
+        //passing parameters
+        Passenger passenger2 = new Passenger(3455544L,"Tallinn", PaymentType.BANK_LINK, "Tartu");
+        printPersonAddress((passenger2));
+        printPassengerPrefixWithPrefix("Person: ", passenger2);
+
+
+        //Composition exercise Muzzle
+        Muzzle muzzle = new Muzzle();
+        muzzle.setId(45675L);
+        muzzle.setNoiseRange(45);
+        muzzle.setTooNoisy(true);
+
+        Dog dog1 = new Dog(true,"Doggie");
+        dog1.setMuzzle(muzzle);
+        System.out.println(dog1.getMuzzle().toString());
+
+//enums
+        System.out.println(PaymentType.CARD); // prints enum CARD
+        System.out.println(Arrays.toString(PaymentType.values())); // prints all the enum values
+
+        System.out.println(PaymentType.BANK_LINK.getValue()); // prints the value of enum
+
+// looping enums
+        for(PaymentType paymenttype: PaymentType.values()){
+            System.out.println(paymenttype.name());
+        }
+        // enum method overriding
+        System.out.println(PaymentType.MOBILE_BANKING.toString());
+
+        //Enum exercise
+        System.out.println(">>>>>>>>>>>>>>>>PLANETS<<<<<<<<<<<<<<<");
+        System.out.println(Planets.JUPITER.toString());
+        System.out.println("Distance of " + Planets.JUPITER.name() + " from Earth: " + Planets.JUPITER.distanceFromEarth() );
+
+        System.out.println(Planets.MARS.toString());
+        System.out.println("Distance of " + Planets.MARS.name() + " from Earth: " + Planets.MARS.distanceFromEarth() );
+
+
+
     }
 
+
+
+
+
+    private static void printPersonAddress(Person person){
+
+        System.out.println(person.getAddress());
+    }
+
+    private static void printPassengerPrefixWithPrefix(String prefix, Object object){
+        System.out.println(prefix + object);
+    }
 }
