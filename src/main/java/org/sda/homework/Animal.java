@@ -1,5 +1,7 @@
 package org.sda.homework;
 
+import org.sda.model.Dog;
+
 public class Animal {
 
     public String yieldVoice;
@@ -42,9 +44,13 @@ public class Animal {
 
 public static Animal[] yieldVoice(){
 
-    Cat cat = new Cat("MEOW",2,"Ants",true);
-    Dog2 dog2 = new Dog2("WOOF",10, "Juhan",true);
-    return new Animal[]{cat,dog2};
+
+        Dog2 dog3 = new Dog2("Whoof-whoof",4, "Dog",true);
+
+        Cat cat1 = new Cat("Meow",2, "Cat",true);
+
+
+        return new Animal[] {dog3, cat1};
 
 
 }

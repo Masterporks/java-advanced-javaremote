@@ -113,11 +113,25 @@ public class Main {
 
 
 
-        Animal[] animals = new Animal[3];
 
-        for (Animal animal : animals) {
-            System.out.println(animal);
+        Dog2 dog3 = new Dog2();
+        dog3.setName("Juhan");
+        Cat cat1 = new Cat();
+        cat1.setName("Ants");
+        Animal.yieldVoice();
+
+        Animal[] animals = Animal.yieldVoice();
+
+        for(Animal animal : animals){
+            Animal.yieldVoice();
+            System.out.println(Arrays.toString(animals));
+            break;
         }
+        System.out.println(dog3.getName());
+        System.out.println(cat1.getName());
+
+
+
 
 
 
