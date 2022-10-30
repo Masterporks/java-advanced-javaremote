@@ -1,8 +1,13 @@
 package org.sda;
 
+import org.sda.homework.Animal;
+import org.sda.homework.Cat;
+import org.sda.homework.Dog2;
 import org.sda.model.*;
 
 import java.util.Arrays;
+
+import static org.sda.homework.Animal.yieldVoice;
 
 public class Main {
     public static void main(String[] args){
@@ -108,6 +113,14 @@ public class Main {
 
 
 
+        Animal[] animals = new Animal[3];
+
+        for (Animal animal : animals) {
+            System.out.println(animal);
+        }
+
+
+
     }
 
 
@@ -122,4 +135,8 @@ public class Main {
     private static void printPassengerPrefixWithPrefix(String prefix, Object object){
         System.out.println(prefix + object);
     }
+
+
+
+
 }

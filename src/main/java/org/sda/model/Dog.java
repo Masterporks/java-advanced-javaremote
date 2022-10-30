@@ -25,6 +25,7 @@ public class Dog {
         this("TOMMY", 2, isMale, race, 10.0f );
     }
 
+
     public int getAge() {
         return age;
     }
