@@ -41,5 +41,12 @@ public class Main {
             System.out.println("Finally executed " + a);
         }
 
+        // Combining multiple exceptions
+        try{
+            int y = 10 / 0;// this line should throw exception
+        }catch(ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e){
+            System.out.println(" The value of y is not determined, Error: " + e.getLocalizedMessage());
+        }
+
     }
 }

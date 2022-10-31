@@ -23,12 +23,20 @@ public interface PersonService {
     int getPersonBirthYear(int age);
 
     /**
-     *
      * To get full name the person
      * @param person Person model
      * @return Full name as String
      */
     String getPersonFullName(Person person);
+
+
+    /**
+     *T o find Person by first name
+     * @param firstname Firstname of person
+     * @return Person
+     */
+    Person findPersonByFirstName(String firstName);
+
 
 
     //Static method definition is allowed

@@ -4,6 +4,7 @@ import org.sda.models.Person;
 import org.sda.services.PersonService;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -19,6 +20,20 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public String getPersonFullName(Person person) {
+
         return person.getFirstName() + " " + person.getLastName();
     }
+
+    @Override
+    public Person findPersonByFirstName(String firstName) {
+        return null;
+    }
+
+    //PRIVATE METHODS//
+    private List<Person> getRandomPersonList(){
+
+
+        return null;
+    }
+
 }
