@@ -1,6 +1,7 @@
 package org.sda.services;
 
 
+import org.sda.exceptions.PersonNotFoundException;
 import org.sda.models.Person;
 
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public interface PersonService {
      * @param firstname Firstname of person
      * @return Person
      */
-    Person findPersonByFirstName(String firstName);
+    Person findPersonByFirstName(String firstName) throws PersonNotFoundException;
 
 
 

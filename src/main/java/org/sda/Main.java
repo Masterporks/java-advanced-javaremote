@@ -1,12 +1,14 @@
 package org.sda;
 
+import org.sda.exceptions.PersonNotFoundException;
 import org.sda.models.Person;
 import org.sda.services.PersonService;
 import org.sda.services.implementations.PersonServiceImpl;
 
-public class Main {
-    public static void main(String[] args) {
+import java.util.List;
 
+public class Main {
+    public static void main(String[] args) throws PersonNotFoundException {
 
 
         // INTERFACE
@@ -29,24 +31,42 @@ public class Main {
         try {
             int[] intArray = {1, 4, 56, 8};
 
-            for(int i = 0; i <= intArray.length; i++){
+            for (int i = 0; i <= intArray.length; i++) {
                 System.out.println(intArray[i]);
             }
-        } catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("The number cannot be printed because its unavailable in the array");
-        } catch (Exception exception){
+        } catch (Exception exception) {
             System.out.println("Exception being caught");
-        }finally{ //This block will be executed irrespective of catch blocks
+        } finally { //This block will be executed irrespective of catch blocks
             int a = 15;
             System.out.println("Finally executed " + a);
         }
 
         // Combining multiple exceptions
-        try{
+        try {
             int y = 10 / 0;// this line should throw exception
-        }catch(ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e){
+        } catch (ArithmeticException | ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println(" The value of y is not determined, Error: " + e.getLocalizedMessage());
         }
 
+        // Custom / user-defined exceptions
+        Person testPerson = null;
+
+
+
+        try {
+            testPerson = personService.findPersonByFirstName("Karl");
+
+        } catch (PersonNotFoundException e) {
+            System.out.println(e.getLocalizedMessage());
+            testPerson = new Person();
+            testPerson.setFirstName("unknown");
+            testPerson.setLastName("unknown last");
+            testPerson.setAge(17);
+        }
+        System.out.println(testPerson.toString());
+
     }
+
 }
