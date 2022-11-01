@@ -5,7 +5,9 @@ import org.sda.models.Person;
 import org.sda.services.PersonService;
 import org.sda.services.implementations.PersonServiceImpl;
 
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws PersonNotFoundException {
@@ -67,6 +69,26 @@ public class Main {
         }
         System.out.println(testPerson.toString());
 
-    }
 
+// H.W Exercise - Exception handling
+        try{
+            displayNumber();
+        }catch(InputMismatchException e){
+            System.out.println(e.getLocalizedMessage());
+            displayNumber();
+        }
+
+    }
+private static void displayNumber(){
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.hasNextInt()){
+            int i = scanner.nextInt();
+            System.out.println("int -> " + i);
+        }else if(scanner.hasNextDouble()){
+            double d = scanner.nextDouble();
+            System.out.println("double ->  " + d);
+        }else {
+            throw new InputMismatchException("Hey that's not a value , try once more");
+        }
+}
 }
