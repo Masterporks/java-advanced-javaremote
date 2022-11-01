@@ -1,10 +1,14 @@
 package org.sda;
 
+import org.sda.abstracts.Food;
+import org.sda.abstracts.Fruit;
+import org.sda.abstracts.Veggie;
 import org.sda.exceptions.PersonNotFoundException;
 import org.sda.models.Person;
 import org.sda.services.PersonService;
 import org.sda.services.implementations.PersonServiceImpl;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -78,9 +82,17 @@ public class Main {
             displayNumber();
         }
 
+        //Abstract class
+        Fruit fruit = new Fruit("Red");
+        fruit.eat();
+
+        Food food = new Veggie("Green"); //WE cannot instantiate (new food ()) but you can assign the child class to the abstract class
+        food.eat();
+
     }
 private static void displayNumber(){
         Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter a number");
         if (scanner.hasNextInt()){
             int i = scanner.nextInt();
             System.out.println("int -> " + i);
