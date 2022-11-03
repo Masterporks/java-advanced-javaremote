@@ -2,6 +2,7 @@ package org.sda;
 
 import org.sda.generics.*;
 
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -115,6 +116,34 @@ public class Main {
         joosepdetails.put("Phone: ", "+3729484747373");
         joosepdetails.put("Birthplace", "Estonia");
         detailsMap.put("Joosep", joosepdetails);
+
+
+
+
+        // I/O
+        File absoluteFile = new File("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced\\src\\main\\resources\\myText.txt");
+        File relativeFile = new File("myText.txt");
+
+        try {
+            FileReader fileReader = new FileReader(absoluteFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String fileLine; // Store the line of text from the file
+            while((fileLine = bufferedReader.readLine()) != null){
+                System.out.println(fileLine);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // File writing
+        try {
+            FileWriter fileWriter = new FileWriter(absoluteFile,true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            String fileLine =  "\\n I can Write an error less Java code:D ";
+            bufferedWriter.write(fileLine);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
