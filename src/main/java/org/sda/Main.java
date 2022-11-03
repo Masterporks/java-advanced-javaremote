@@ -3,11 +3,10 @@ package org.sda;
 import org.sda.generics.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
+    // @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
         // GENERIC TYPE
@@ -67,9 +66,55 @@ public class Main {
             System.out.println(animal);
         }
 
+        //SET
+        Set<String> countrySet = new HashSet<>(); // --non sorted, randomly stored
+        countrySet.add("Eesti");
+        countrySet.add("Saksamaa");
+        countrySet.add("Poola");
+        countrySet.add("Rootsi");
+        // countrySet.add("Eesti"); --> duplicates not allowed
 
 
+        for(String country: countrySet){
+            System.out.println(country);
+        }
+        System.out.println("Before" + countrySet);
+        TreeSet<String> countryTreeSet = new TreeSet<>(countrySet);  //  Sorted , alphabetically stored
+        System.out.println("After sorting" + countryTreeSet);
 
+        //MAPS
+        Map<String,String> fullName = new HashMap<>();  // not sorted as sorted
+                    //Key  vs   Value
+        fullName.put("Valdur","Ratas");
+        fullName.put("Elmar", "Vinkel");
+        fullName.put("Anton", "Burger");
+        System.out.println(fullName);
+
+        System.out.println(fullName.get("Anton"));
+        System.out.println(fullName.remove("Elmar"));
+        System.out.println(fullName);
+
+        Map<String, Integer> ageMap = new HashMap<>();
+        ageMap.put("Venno Lootsik",44);
+        ageMap.put("Viljar Kummivilin", 20);
+        ageMap.put("Siim Prill", 89);
+
+        Map<String, List<String>> friendsMaps = new HashMap<>();
+
+        List<String> JoosepFriendList = List.of("Martin","Priit", "Taavi");
+        List<String> MihkelFriendList = List.of("Martin","Priit", "Taavi");
+        List<String> PilleFriendList = List.of("Martin","Priit", "Taavi");
+        friendsMaps.put("Joosep",JoosepFriendList);
+        friendsMaps.put("Mihkel",MihkelFriendList);
+        friendsMaps.put("Pille",PilleFriendList);
+
+        Map<String,Map<String,String>> detailsMap = new HashMap<>();
+        Map<String,String> joosepdetails = new HashMap<>();
+        joosepdetails.put("Age", "33");
+        joosepdetails.put("ID", "356674774475");
+        joosepdetails.put("Phone: ", "+3729484747373");
+        joosepdetails.put("Birthplace", "Estonia");
+        detailsMap.put("Joosep", joosepdetails);
     }
 
 }
