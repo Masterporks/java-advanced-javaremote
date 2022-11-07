@@ -12,7 +12,6 @@ package org.sda.homework;
  * @param <T> Generic
  * @return true or false
  */
-
 public interface ComparableHomework<T> {
 
     boolean isTaller(T item);

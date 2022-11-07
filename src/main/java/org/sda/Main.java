@@ -5,11 +5,17 @@ import org.sda.homework.Person;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Main {
     // @SuppressWarnings("unchecked")
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // GENERIC TYPE
         Fruit fruit = new Fruit();
@@ -131,7 +137,9 @@ public class Main {
             String fileLine; // Store the line of text from the file
             while((fileLine = bufferedReader.readLine()) != null){
                 System.out.println(fileLine);
+
             }
+            bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -141,14 +149,90 @@ public class Main {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             String fileLine =  "\\n I can Write an error less Java code:D ";
             bufferedWriter.write(fileLine);
+            bufferedWriter.flush();
+            bufferedWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         //Homework (Person comparable)
         Person person1 = new Person(163);
         Person person2 = new Person(178);
         System.out.println("Person 1 is taller than person 2: " + person1.isTaller(person2));
         System.out.println(person1.compareTo(person2));
-    }
 
+
+
+        //SERIALIZATION
+
+        String fileName = "file.ser";
+
+        try{
+            FileOutputStream file = new FileOutputStream(fileName);
+            ObjectOutputStream outputStream = new ObjectOutputStream(file);
+
+            outputStream.writeObject(fruit);
+            outputStream.close();
+            file.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // DESERIALIZATION
+
+        Fruit deserializedFruit = null;
+
+        try{
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            deserializedFruit = (Fruit) in.readObject();
+
+            in.close();
+            file.close();
+
+            System.out.println(deserializedFruit.toString());
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        // NEW I/O
+        Path absolutePath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced\\src\\main\\resources\\myText.txt");
+        Path relativePath = Paths.get("myText.txt");
+
+        try{
+
+            // File reading
+            List<String> fileLines = Files.readAllLines(absolutePath, StandardCharsets.UTF_8);
+
+
+            // just to print a file which was read above
+            for(String fileLine : fileLines){
+                System.out.println(fileLine);
+            }
+
+            // File writing
+            List<String> fileLinesToWrite = List.of("I Love Java", " Estonia is my country");
+            Files.write(absolutePath, fileLinesToWrite, StandardOpenOption.APPEND);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        //HOMEWORK
+        Path filePath = Paths.get("C:\\Users\\Kasutaja\\IdeaProjects\\java-advanced\\src\\main\\resources\\loremIpsum.txt");
+        Path samePath = Paths.get("loremIpsum.txt");
+
+        List<String> loremIpsumLines = Files.readAllLines(absolutePath, StandardCharsets.UTF_8);
+        int i;
+
+        //for(i = 0,i < loremIpsumLines.toArray().length, i++)
+
+
+
+
+    }
 }
