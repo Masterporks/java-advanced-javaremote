@@ -1,6 +1,7 @@
 package org.sda;
 
 import org.sda.generics.*;
+import org.sda.homework.Person;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -143,7 +144,11 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        //Homework (Person comparable)
+        Person person1 = new Person(163);
+        Person person2 = new Person(178);
+        System.out.println("Person 1 is taller than person 2: " + person1.isTaller(person2));
+        System.out.println(person1.compareTo(person2));
     }
 
 }
