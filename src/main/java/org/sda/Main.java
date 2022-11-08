@@ -14,7 +14,7 @@ public class Main {
         //LAMBDA EXPRESSION
         //Predicate
 
-        Person person = new Person("Joosep", "Korela", 20);
+        Person person = new Person("Joosep", "Korela","Kala", 20);
         Predicate<Person> personTest = test -> test.getAge() > 20; // lambda expression
         System.out.println(personTest.test(person));
 
@@ -51,7 +51,7 @@ public class Main {
 
 
         //OPTIONAL
-        Person person3 = new Person("Tony", "Stark", 54);
+        Person person3 = new Person("Tony", "Stark","Konn", 54);
         Optional<Person> optionalPerson = Optional.of(person3);
 
 
@@ -124,6 +124,24 @@ public class Main {
                 .forEach(System.out::println);
 
 
+        //NESTED CLASSES
+
+        //NON-static
+        Person person4 = new Person("Anton", "Kalamees","Roosakonn",55);
+        System.out.println(person4.getUserName());
+
+        Person.Employee employee = person4.new Employee();
+        employee.userName(); // inner class method is called
+        System.out.println(person4.getUserName());
+
+        //Static
+
+        Person person5 = new Person("Ivo", "Kukk", "ivo", 56);
+        System.out.println(person5.getUserName()); // outer class method call
+
+        Person.Customer customer = new Person.Customer(); // Difference in the object instantiation
+        customer.username(person5);
+        System.out.println(person5.getUserName());
 
 
 
@@ -141,8 +159,8 @@ public class Main {
     private static Person getRandomPerson(){
 
         //Optional<Person> optionalPerson = Optional.empty();
-        Optional<Person> optionalPerson = Optional.of(new Person("Captain", "Estonia" ,44));
-        Person person2 = new Person("Marek", "Austin", 33); //Backup substitute
+        Optional<Person> optionalPerson = Optional.of(new Person("Captain", "Estonia" ,"Tuvi",44));
+        Person person2 = new Person("Marek", "Austin", "Siil",33); //Backup substitute
         return optionalPerson.orElse(person2);
 
     }
