@@ -2,6 +2,8 @@ package org.sda;
 
 import org.sda.concurrency.StopWatchRunnableImpl;
 import org.sda.concurrency.StopWatchThread;
+import org.sda.concurrency.synchronization.ShoppingCart;
+import org.sda.concurrency.synchronization.ShoppingCartThread;
 import org.sda.model.Person;
 
 import java.util.Comparator;
@@ -167,7 +169,15 @@ public class Main {
         Thread stopWatchRunnableThread = new Thread(new StopWatchRunnableImpl());
         stopWatchRunnableThread.start();
 
+        Thread.sleep(10000);
+        //SYNCHRONIZATION
 
+        ShoppingCart shoppingCart = new ShoppingCart(200); //Maximum  limit that can be added to cart
+        ShoppingCartThread shoppingCartThread1 = new ShoppingCartThread(shoppingCart);
+        ShoppingCartThread shoppingCartThread2 = new ShoppingCartThread(shoppingCart);
+        shoppingCartThread1.start();
+        shoppingCartThread2.start();
+        System.out.println("Number of products: " + shoppingCart.getNumberOfProducts());
 
 
     }
